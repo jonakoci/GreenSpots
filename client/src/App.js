@@ -7,8 +7,8 @@ import MapwithMarkers from './MapwithMarkers';
 function App() {
   return (
     <div className="App">
-      <Header style={{marginBottom:"30px"}}/>
-      <div style={{marginBottom:"40px", padding:"20px"}} >
+      <Header/>
+      <div style={{margin:"20px", padding:"10px", border:"1px solid #d3d3d3", borderRadius:"10px"}} >
         <MapwithMarkers/>
         </div>
       <Footer />

@@ -4,13 +4,13 @@ function Footer() {
     return (
             <footer
                 class="text-center text-lg-start text-dark"
-                style={{backgroundColor: "white"}}
+                style={{backgroundColor: "white", padding: "20px"}}
             >
                 <section
                     class="d-flex justify-content-between p-4 text-white"
                     style={{backgroundColor: "#82cc28"}}
                 >
-                    <div class="me-5">
+                    <div class="me-5 fs-4">
                         <span>Get connected with us on social networks:</span>
                     </div>
 
