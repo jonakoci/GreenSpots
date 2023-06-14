@@ -1,5 +1,6 @@
-import React from 'react';
+import React, {useEffect, useRef} from 'react';
 import './App.css';
+
 import MapwithMarkers from './components/View/MapwithMarkers';
 import { BrowserRouter as Router, Route, Routes, Link, BrowserRouter }
     from "react-router-dom";
@@ -8,7 +9,11 @@ import Main from './components/View/Main';
 
 
 function App() {
+
   return (
+
+    <div className="App">
+      <Map />
     <div>
       <BrowserRouter>
         <Routes>
@@ -21,4 +26,4 @@ function App() {
   );
 }
 
-export default App;
+export default App
