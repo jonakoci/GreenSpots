@@ -7,7 +7,7 @@ function Footer() {
             <div style={{margin:"100px"}} >
                 <h1 class="font-weight-bold grey-text text-uppercase">Explore our EV charging network</h1>
                 <hr />
-                <p style={{ width:"85%", fontSize:"20px"}}>A dense charging network is key for a successful transformation to e-mobility. Green Spots focuses on public on-street charging and is constantly expanding its network.
+                <p style={{ fontSize:"20px"}}>A dense charging network is key for a successful transformation to e-mobility. Green Spots focuses on public on-street charging and is constantly expanding its network.
                     To find your nearest Green Spot charge point now, you can also user our interactive map.</p>
             </div>
             <div class="container">

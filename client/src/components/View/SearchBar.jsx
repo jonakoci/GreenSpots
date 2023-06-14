@@ -18,9 +18,6 @@ function SearchBar() {
                             <div class="col-auto">
                                 <img src={locationLogo} alt="currentLocation" width={'40px'} />
                             </div>
-                            {/* <div class="col-auto">
-                                <img src={filterLogo} alt="currentLocation"/>
-                            </div> */}
                         </div>
                     </form>
                 </div>
