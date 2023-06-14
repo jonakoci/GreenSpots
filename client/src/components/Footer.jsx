@@ -11,7 +11,7 @@ function Footer() {
                     style={{backgroundColor: "#82cc28"}}
                 >
                     <div class="me-5 fs-4">
-                        <span>Get connected with us on social networks:</span>
+                        <span>Get connected with us:</span>
                     </div>
 
                     <div>
@@ -40,15 +40,14 @@ function Footer() {
                     <div class="container text-center text-md-start mt-5">
                         <div class="row mt-3">
                             <div class="col-md-3 col-lg-4 col-xl-3 mx-auto mb-4">
-                                <h6 class="text-uppercase fw-bold">Company name</h6>
+                                <h6 class="text-uppercase fw-bold">Green Spots</h6>
                                 <hr
                                     class="mb-4 mt-0 d-inline-block mx-auto"
                                     style={{width: "60px", backgroundColor:" #7c4dff", height: "2px"}}
                                 />
                                 <p>
-                                    Here you can use rows and columns to organize your footer
-                                    content. Lorem ipsum dolor sit amet, consectetur adipisicing
-                                    elit.
+                                We are user-friendly and comprehensive online platform that empowers electric vehicle (EV) owners 
+                                to effortlessly locate electrical charging points based on their current location.
                                 </p>
                             </div>
 
