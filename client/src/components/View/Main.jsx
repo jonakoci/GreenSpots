@@ -6,10 +6,14 @@ import SearchBar from './SearchBar'
 
 function Main() {
   return (
-    <div>
+    <div  style={{margin:"20px"}}>
       <Header />
-      <SearchBar />
-      <MapwithMarkers />
+      <div >
+        <SearchBar />
+      </div>
+      <div style={{margin:"20px", padding:"10px", border:"1px solid #D3D3D3", borderRadius:"10px"}}>
+        <MapwithMarkers />
+      </div>
       <Footer />
     </div>
   )

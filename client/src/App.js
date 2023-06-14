@@ -11,10 +11,7 @@ import Main from './components/View/Main';
 function App() {
 
   return (
-
     <div className="App">
-      <Map />
-    <div>
       <BrowserRouter>
         <Routes>
           <Route path='/' element={ <Main /> } />
