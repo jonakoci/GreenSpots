@@ -1,6 +1,6 @@
 import React from 'react'
 import { GoogleMap, LoadScript, Marker, TrafficLayer } from '@react-google-maps/api';
-import leaf from './components/leafmarker.png'
+import leaf from '../logos/leafmarker.png'
 
 function MapwithMarkers() {
     const containerStyle = {

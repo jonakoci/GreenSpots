@@ -1,22 +1,23 @@
 import React from 'react';
 import './App.css';
-import Footer from './components/Footer';
-import Header from './components/Header';
-import SearchBar from './components/SearchBar';
-import MapwithMarkers from './MapwithMarkers';
+import MapwithMarkers from './components/View/MapwithMarkers';
+import { BrowserRouter as Router, Route, Routes, Link, BrowserRouter }
+    from "react-router-dom";
+import HowTo from '../src/components/HowTo'
+import Main from './components/View/Main';
+
 
 function App() {
   return (
     <div>
-      <Header/>
-      <div style={{margin:"10px", padding:"10px"}}>
-       <SearchBar />
-      </div>
-      <div style={{margin:"20px", padding:"10px", border:"1px solid #d3d3d3", borderRadius:"10px"}}>
-        <MapwithMarkers/>
-      </div>  
-      <Footer />
+      <BrowserRouter>
+        <Routes>
+          <Route path='/' element={ <Main /> } />
+          <Route path="/how" element={<HowTo /> } />  
+        </Routes>
+      </BrowserRouter>
     </div>
+
   );
 }
 
