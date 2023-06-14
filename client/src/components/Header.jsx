@@ -20,7 +20,7 @@ function Header () {
                             <a class="nav-link" href="#">How to Charge</a>
                         </li>
                         <li class="navbar-brand">
-                            <a class="nav-link" href="#">Request a charge Point</a>
+                            <a class="nav-link" href="#">Add a charge Point</a>
                         </li>
                         <li class="navbar-brand">
                             <a class="nav-link" href="#">Support</a>
