@@ -1,5 +1,5 @@
 import React from 'react'
-import Ikone from '../components/logo2.png'
+import Ikone from '../logos/logo2.png'
 
 function Header () {
 
@@ -17,7 +17,7 @@ function Header () {
                             <a class="nav-link active" aria-current="page" href="#">Map</a>
                         </li>
                         <li class="navbar-brand">
-                            <a class="nav-link" href="#">How to Charge</a>
+                            <a class="nav-link" href="/how">How to Charge</a>
                         </li>
                         <li class="navbar-brand">
                             <a class="nav-link" href="#">Add a charge Point</a>

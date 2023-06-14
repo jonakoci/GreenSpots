@@ -1,6 +1,5 @@
 import React from 'react'
-import locationLogo from '../components/currentLocation.png'
-import filterLogo from '../components/filter.png'
+import locationLogo from '../logos/currentLocation.png'
 
 function SearchBar() {
     return (
