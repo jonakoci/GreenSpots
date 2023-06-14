@@ -1,35 +1,22 @@
 import React from 'react';
 import './App.css';
-import { GoogleMap, LoadScript, MarkerF} from '@react-google-maps/api';
-
-const containerStyle = {
-  height: '600px',
-  width: '100%'
-};
-
-const center = {
-  lat: 41.3275,
-  lng: 19.8187
-};
-
-const point = {
-  lat:41.331781, 
-  lng:19.81583
-}
-
+import Footer from './components/Footer';
+import Header from './components/Header';
+import SearchBar from './components/SearchBar';
+import MapwithMarkers from './MapwithMarkers';
 
 function App() {
   return (
-    <div className="App">
-      <LoadScript googleMapsApiKey="AIzaSyDKoUoidG1QOmO57mMj44HSIbCNNroE1kY">
-        <GoogleMap
-          mapContainerStyle={containerStyle}
-          center={center} // Set the initial center of the map
-          zoom={10}
-        >
-            <MarkerF position={point} />
-        </GoogleMap>
-      </LoadScript>
+    <div>
+      <Header/>
+      <div style={{margin:"10px", padding:"10px"}}>
+       <SearchBar />
+      </div>
+      <div style={{margin:"20px", padding:"10px", border:"1px solid #d3d3d3", borderRadius:"10px"}}>
+        <MapwithMarkers/>
+      </div>
+        
+      <Footer />
     </div>
   );
 }
