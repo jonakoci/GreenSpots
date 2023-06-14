@@ -1,0 +1,27 @@
+.aboutus{
+    padding: 70px;
+}
+
+.aboutus .about-box{
+    margin-top: 70px;
+    align-items: center;
+}
+
+.aboutus .about-box img{
+    width: 500px;
+    height: 500px;
+    object-fit: cover;
+}
+
+.aboutus .about-box img:nth-child(odd) {
+    margin-right: 100px;
+  }
+  
+  .aboutus .about-box img:nth-child(even) {
+    margin-left: 100px;
+  }
+  
+  link {
+    text-decoration: none;
+  }
+  
