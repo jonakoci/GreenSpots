@@ -1,5 +1,7 @@
-import React from 'react'
-import Ikone from '../components/logo2.png'
+import React from 'react';
+import {Link} from "react-router-dom";
+import Ikone from '../logos/logo2.png';
+import './aboutUs/AboutUs.css'
 
 function Header () {
 
@@ -8,22 +10,22 @@ function Header () {
             <div class="container d-flex justify-content-around" style={{height:"100px", margin:"10px", padding:"10px"}} >
                 <div>
                     <a class="navbar-brand" href="#">
-                      <img src={Ikone} alt="logo" width="150" height="150" />
+                      <Link to="/"><img src={Ikone} alt="logo" width="150" height="150" /></Link>
                     </a>
                 </div>
                 <div class="collapse navbar-collapse d-flex justify-content-end">
                     <ul class="navbar-nav gap-3">
                         <li class="navbar-brand">
-                            <a class="nav-link active" aria-current="page" href="#">Map</a>
+                            <Link to="/" style={{ textDecoration: 'none' }}><p class="nav-link active" aria-current="page" >Map</p></Link>
                         </li>
                         <li class="navbar-brand">
-                            <a class="nav-link" href="#">How to Charge</a>
+                            <Link to="/how" style={{ textDecoration: 'none' }}><p class="nav-link">How to Charge</p></Link>
                         </li>
                         <li class="navbar-brand">
-                            <a class="nav-link" href="#">Request a charge Point</a>
+                            <Link to="/#" style={{ textDecoration: 'none' }}><p class="nav-link" href="#">Add a charge Point</p></Link>
                         </li>
                         <li class="navbar-brand">
-                            <a class="nav-link" href="#">Support</a>
+                            <Link to="/about" style={{ textDecoration: 'none' }}><p class="nav-link" href="#">About</p></Link>
                         </li>
                     </ul>
                 </div>
