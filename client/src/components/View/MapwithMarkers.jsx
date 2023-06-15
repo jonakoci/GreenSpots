@@ -1,4 +1,6 @@
+
 import React, { useEffect, useState, useRef } from "react";
+
 import {
   GoogleMap,
   LoadScript,
@@ -106,42 +108,58 @@ function MapwithMarkers() {
 
   return (
     <div>
-      <LoadScript googleMapsApiKey="AIzaSyDKoUoidG1QOmO57mMj44HSIbCNNroE1kY"
-      libraries={["places"]}>
-        <GoogleMap
-          mapContainerStyle={containerStyle}
-          center={selectedMarker ? { lat: selectedMarker.lat, lng: selectedMarker.lng } : center}
-          zoom={zoom}
-          onClick={onClick}
-          ref={mapRef}
-        >
-          {points.map((point, index) => (
-            <Marker
-              key={point.id}
-              position={{ lat: point.lat, lng: point.lng }}
-              icon={getMarkerIcon(point)}
-              onClick={() => onMarkerClick(point)}
-            />
-          ))}
-          {selectedMarker && (
-            <InfoWindow
-              position={{ lat: selectedMarker.lat, lng: selectedMarker.lng }}
-              onCloseClick={onCloseClick}
-              options={{
-                pixelOffset: new window.google.maps.Size(0, -30), // Adjust the vertical position of the InfoWindow
-              }}
-            >
-              <div style={{ width: '100px', height: 'auto' }}>
-                <p>{selectedMarker.title}</p>
-                <p>{selectedMarker.description}</p>
-                <button>Directions</button>
-                <button onClick={handleStatus}>Change Status</button>
-              </div>
-            </InfoWindow>
-          )}
-          <TrafficLayer onLoad={onLoad} />
-        </GoogleMap>
-      </LoadScript>
+      <div class="row justify-content-center m-3">
+                  <div>
+                      <form class="card">
+                          <div class="card-body row align-items-center justify-content-evenly">
+                              <div class="col-9">
+                                  <input class="form-control form-control-lg form-control-borderless" type="search" placeholder="Address, city" />
+                              </div>
+                              <div class="col-auto">
+                                  <button class="btn btn-lg btn-success" type="submit">Search</button>
+                              </div>
+                              <div class="col-auto">
+                                  <img src={locationLogo} alt="currentLocation" width={'40px'} />
+                              </div>
+                          </div>
+                      </form>
+                  </div>
+
+      <div>
+        <LoadScript googleMapsApiKey="AIzaSyDKoUoidG1QOmO57mMj44HSIbCNNroE1kY">
+          <GoogleMap
+            mapContainerStyle={containerStyle}
+            center={center}
+            zoom={10}
+            onClick={onClick}
+          >
+            {points.map((point, index) => (
+              <Marker
+                key={point.id}
+                position={{ lat: point.lat, lng: point.lng }}
+                icon={getMarkerIcon(point)}
+                onClick={() => onMarkerClick(point)}
+              />
+            ))}
+            {selectedMarker && (
+              <InfoWindow
+                position={{ lat: selectedMarker.lat, lng: selectedMarker.lng }}
+                onCloseClick={onCloseClick}
+                options={{
+                  pixelOffset: new window.google.maps.Size(0, -30), // Adjust the vertical position of the InfoWindow
+                }}
+              >
+                <div style={{ width: '100px', height: 'auto' }}>
+                  <p>{selectedMarker.title}</p>
+                  <p>{selectedMarker.description}</p>
+                  <button>Directions</button>
+                </div>
+              </InfoWindow>
+            )}
+            <TrafficLayer onLoad={onLoad} />
+          </GoogleMap>
+        </LoadScript>
+      </div>
     </div>
   );
 }
