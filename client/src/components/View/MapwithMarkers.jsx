@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import {
   GoogleMap,
   LoadScript,
@@ -13,6 +13,10 @@ import axios from "axios";
 function MapwithMarkers() {
   const [points, setPoints] = useState([]);
   const [selectedMarker, setSelectedMarker] = useState(null);
+  const [available, setAvailable] = useState();
+  const [zoom, setZoom] = useState(12);
+  const mapRef = useRef(null);
+
 
   useEffect(() => {
     axios
@@ -51,13 +55,14 @@ function MapwithMarkers() {
     console.log("trafficLayer: ", trafficLayer);
   };
 
-  
   const onMarkerClick = (marker) => {
     setSelectedMarker(marker);
+    setZoom(15); // Update the zoom level to zoom in on the selected marker
   };
-
+  
   const onCloseClick = () => {
     setSelectedMarker(null);
+    setZoom(12);
   };
   
   const getMarkerIcon = (point) => {
@@ -67,15 +72,48 @@ function MapwithMarkers() {
       return { url: redleaf, scaledSize: { width: 50, height: 50 } };
     }
   };
+  
+  const handleStatus = () => {
+    if (selectedMarker) {
+      const pointId = selectedMarker.id;
+      const updatedPoints = points.map((point) => {
+        if (point.id === pointId) {
+          return {
+            ...point,
+            available: !selectedMarker.available,
+          };
+        }
+        return point;
+      });
+  
+      axios
+        .patch(`http://localhost:8000/api/users/edit/${pointId}`, {
+          available: !selectedMarker.available,
+        })
+        .then((res) => {
+          setPoints(updatedPoints);
+          setSelectedMarker((prevSelectedMarker) => ({
+            ...selectedMarker,
+            available: !selectedMarker.available,
+          }));
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    }
+  };
+  
 
   return (
     <div>
-      <LoadScript googleMapsApiKey="AIzaSyDKoUoidG1QOmO57mMj44HSIbCNNroE1kY">
+      <LoadScript googleMapsApiKey="AIzaSyDKoUoidG1QOmO57mMj44HSIbCNNroE1kY"
+      libraries={["places"]}>
         <GoogleMap
           mapContainerStyle={containerStyle}
-          center={center}
-          zoom={10}
+          center={selectedMarker ? { lat: selectedMarker.lat, lng: selectedMarker.lng } : center}
+          zoom={zoom}
           onClick={onClick}
+          ref={mapRef}
         >
           {points.map((point, index) => (
             <Marker
@@ -97,6 +135,7 @@ function MapwithMarkers() {
                 <p>{selectedMarker.title}</p>
                 <p>{selectedMarker.description}</p>
                 <button>Directions</button>
+                <button onClick={handleStatus}>Change Status</button>
               </div>
             </InfoWindow>
           )}
@@ -107,4 +146,4 @@ function MapwithMarkers() {
   );
 }
 
-export default MapwithMarkers
+export default MapwithMarkers;
