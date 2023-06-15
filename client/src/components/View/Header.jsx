@@ -17,13 +17,16 @@ function Header () {
                             <a class="nav-link active" aria-current="page" href="#">Map</a>
                         </li>
                         <li class="navbar-brand">
+                            <a class="nav-link" href="#">About Us</a>
+                        </li>
+                        <li class="navbar-brand">
                             <a class="nav-link" href="/how">How to Charge</a>
                         </li>
                         <li class="navbar-brand">
                             <a class="nav-link" href="#">Add a charge Point</a>
                         </li>
                         <li class="navbar-brand">
-                            <a class="nav-link" href="#">Support</a>
+                            <a class="nav-link" href="#">Register/Login</a>
                         </li>
                     </ul>
                 </div>
