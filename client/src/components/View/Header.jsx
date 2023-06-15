@@ -22,11 +22,12 @@ function Header () {
                             <Link to="/how" style={{ textDecoration: 'none' }}><p class="nav-link">How to Charge</p></Link>
                         </li>
                         <li class="navbar-brand">
-                            <Link to="/#" style={{ textDecoration: 'none' }}><p class="nav-link" href="#">Add a charge Point</p></Link>
-                        </li>
-                        <li class="navbar-brand">
                             <Link to="/about" style={{ textDecoration: 'none' }}><p class="nav-link" href="#">About</p></Link>
                         </li>
+                        <li class="navbar-brand">
+                            <Link to="/#" style={{ textDecoration: 'none' }}><p class="nav-link" href="#">Add a charge Point</p></Link>
+                        </li>
+                        
                     </ul>
                 </div>
             </div>

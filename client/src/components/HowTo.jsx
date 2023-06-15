@@ -1,152 +1,59 @@
 import React from 'react'
-import { css } from '@emotion/react';
+import './styling.css'
+import { useNavigate } from 'react-router-dom'
+
 
 function HowTo() {
+    const navigate = useNavigate()
+
+
     return (
-        <div>
-            <div class="container z-depth-1 my-5 py-5 px-4 px-lg-0">
+        <div style={{backgroundImage:'url("https://i0.wp.com/myfreeslides.com/wp-content/uploads/2020/02/green-yellow-Presentation-Gradient-Background.jpg?ssl=1")', backgroundSize: "cover"}}>
+            <div class="container z-depth-1 py-5 px-4 px-lg-0" >
                 <section>
-                    <style>
-                        .timeline {{
-                            position: "relative",
-                        listStyle: "none",
-                        padding: "1rem 0",
-                        margin: "0"
-                        }}
-
-                        .timeline::before {{
-                            content: '',
-                        position: "absolute",
-                        left: "50%",
-                        top: "0",
-                        bottom: "0",
-                        width: "2px",
-                        marginLeft:" -1px",
-                        backgroundColor: "#50a1ff"
-                        }}
-
-                        .timeline-element {{
-                            position: "relative",
-                        width: "50%",
-                        padding:" 1rem 0",
-                        paddingRight: "2.5rem",
-                        textAlign: "right"
-                        }}
-
-                        .timeline-element::before {{
-                            content: '',
-                        position: "absolute",
-                        right: "-8px",
-                        top: "1.35rem",
-                        display: "inline-block",
-                        width: "16px",
-                        height:" 16px",
-                        borderRadius:" 50%",
-                        border: "2px solid #50a1ff",
-                        backgroundColor: "#fff",
-                        }}
-
-                        .timeline-element:nth-child(even)::before {{
-                            right: "auto",
-                        left: "-8px"
-                        }}
-
-                        .timeline-element:nth-child(even) {{
-                            marginLeft: "50%",
-                        paddingLeft: "2.5rem",
-                        paddingRight: "0",
-                        textAlign: "left"
-                        }}
-
-                        
-
-{/* @media (max-width: 767.98px) {
-        .timeline::before {
-            left: 8px;
-        }
-    }
-
-    @media (max-width: 767.98px) {
-        .timeline-element {
-            width: 100%;
-            text-align: left;
-            padding-left: 2.5rem;
-            padding-right: 0;
-        }
-    }
-
-    @media (max-width: 767.98px) {
-        .timeline-element::before {
-            top: 1.25rem;
-            left: 1px;
-        }
-    }
-
-    @media (max-width: 767.98px) {
-        .timeline-element:nth-child(even) {
-            margin-left: 0rem;
-        }
-    }
-
-    @media (max-width: 767.98px) {
-        .timeline-element {
-            width: 100%;
-            text-align: left;
-            padding-left: 2.5rem;
-            padding-right: 0;
-        }
-    }
-
-    @media (max-width: 767.98px) {
-        .timeline-element:nth-child(even)::before {
-            left: 1px;
-        }
-    }
-
-    @media (max-width: 767.98px) {
-        .timeline-element::before {
-            top: 1.25rem;
-        }
-    } */}
-                    </style>
-
-                    <h3 class="font-weight-bold text-center dark-grey-text pb-2">Our History</h3>
+                    <h3 class="font-weight-bold text-center dark-grey-text pb-2">How it works</h3>
                     <hr class="w-header my-4"/>
-                        <p class="lead text-center text-muted pt-2 mb-5">MDB founded to help startups, and it still shapes the way we work today.</p>
-
+                        <p class="lead text-center text-muted pt-2 mb-5">Follow these simple steps once you reach your charging point.</p>
                         <div class="row">
                             <div class="col-lg-8 mx-auto">
-
                                 <ol class="timeline">
                                     <li class="timeline-element">
-                                        <h5 class="font-weight-bold dark-grey-text mb-3">Launched our website</h5>
-                                        <p class="grey-text font-small"><time datetime="2017-02-08">08 Feb 2017</time></p>
-                                        <p class="text-muted">Lorem ipsum dolor sit amet consectetur adipisicing elit. Assumenda ullam adipisci reiciendis porro natus laudantium similique.
-                                            Explicabo amet ipsum fugiat aliquam alias.</p>
+                                        <h5 class="font-weight-bold dark-grey-text mb-3"> 1. Scan the QR code present in the charging spot</h5>
+                                        <p> <img class="img-fluid z-depth-1-half rounded" src="https://cdn.create.vista.com/api/media/small/424003216/stock-video-scan-code-smartphone-computer-monitor?videoStaticPreview=true&token=" alt="..." /></p>
+
+                                        <p class="text-muted">Let the app scan the QR code: Once the QR code is in the viewfinder, 
+                                        the scanner app will automatically recognize and scan it. You don't need to press any buttons or take a photo manually. <br />The app will analyze the code and extract the information embedded within it.</p>
                                     </li>
 
                                     <li class="timeline-element">
-                                        <h5 class="font-weight-bold dark-grey-text mb-3">Got the first 100 users</h5>
-                                        <p class="grey-text font-small"><time datetime="2017-08-17">17 Aug 2017</time></p>
-                                        <p><img class="img-fluid z-depth-1-half rounded" src="https://mdbootstrap.com/img/Photos/Horizontal/Work/12-col/img%20(6).jpg" alt="..."/></p>
-                                        <p class="text-muted">Lorem ipsum dolor sit amet consectetur adipisicing elit. Assumenda ullam adipisci reiciendis porro natus laudantium similique.
-                                            Explicabo amet ipsum fugiat aliquam alias.</p>
+                                        <h5 class="font-weight-bold dark-grey-text mb-3">2. Fill information form</h5>
+                                        <p class="text-muted"> If you are not registered you may be required to fill in certain information. Here are the common details you might need to provide:</p>
+                                        <ul>
+                                            <li>Email Address</li>
+                                            <li>Name</li>
+                                            <li>Car Information: the make, model, and license plate number</li>
+                                            <li>Name</li>
+                                            <li>Estimated duration of your charging session</li>
+                                            <li>Payment Method</li>
+                                        </ul>
                                     </li>
 
                                     <li class="timeline-element">
-                                        <h5 class="font-weight-bold dark-grey-text mb-3">Raised $1.4 million in seed funding</h5>
-                                        <p class="grey-text font-small"><time datetime="2018-03-26">26 Mar 2019</time></p>
-                                        <p class="text-muted">Lorem ipsum dolor sit amet consectetur adipisicing elit. Assumenda ullam adipisci reiciendis porro natus laudantium similique.
-                                            Explicabo amet ipsum fugiat aliquam alias.</p>
+                                        <h5 class="font-weight-bold dark-grey-text mb-3">Power ON</h5>
+                                        <p> <img class="img-fluid z-depth-1-half rounded" src="https://media.istockphoto.com/id/1292252309/photo/electric-cars-are-charging-in-station.jpg?s=612x612&w=0&k=20&c=i2hMAmP83hPn-NKTm7iIE6JVh3mFvIpChHxPD3dtg4M=" alt="..." /></p>
+                                        <p class="text-muted">Enjoy a coffee as your car is charging and follow in real time the remaining time of charging</p>
                                     </li>
 
                                     <li class="timeline-element">
-                                        <h5 class="font-weight-bold dark-grey-text mb-3">Team size increased to 20</h5>
-                                        <p class="grey-text font-small"><time datetime="2018-04-14">14 Apr 2019</time></p>
-                                        <p class="text-muted">Lorem ipsum dolor sit amet consectetur adipisicing elit. Assumenda ullam adipisci reiciendis porro natus laudantium similique.
-                                            Explicabo amet ipsum fugiat aliquam alias.</p>
+                                        <h5 class="font-weight-bold dark-grey-text mb-3">Billing through email </h5>
+                                        <p class="text-muted">An email will we sent to you will the billing information and your credit bonus score. Reminder: for every charge you gain extra credit to use on your next charging.</p>
                                     </li>
                                 </ol>
+
+                                <p class="lead text-center text-muted pt-2 mb-5">We wanted to take a moment to extend our heartfelt gratitude and say a big "Thank You" to each and every one of you who have chosen to drive electric cars. Your conscious decision to embrace electric vehicles is making a significant positive impact on our environment and shaping a greener future for all.By opting for electric cars, you are actively contributing to reducing carbon emissions and combating climate change</p>
+
+                                <button class="btn btn-success" onClick={()=> navigate('/')}> Back to Map </button>
+
 
                             </div>
                         </div>

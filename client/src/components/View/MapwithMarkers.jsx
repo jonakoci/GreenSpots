@@ -1,19 +1,22 @@
 import React, { useEffect, useState, useRef } from "react";
+
 import {
   GoogleMap,
   LoadScript,
   Marker,
   InfoWindow,
+  DirectionsRenderer,
   TrafficLayer,
 } from "@react-google-maps/api";
 import leaf from "../logos/leafmarker.png";
 import redleaf from "../logos/redLeaf.png";
+import locationLogo from "../logos/currentLocation.png";
 import axios from "axios";
 
 function MapwithMarkers() {
   const [points, setPoints] = useState([]);
   const [selectedMarker, setSelectedMarker] = useState(null);
-  const [available, setAvailable] = useState();
+  const [directions, setDirections] = useState(null);
   const [zoom, setZoom] = useState(12);
   const mapRef = useRef(null);
 
@@ -103,47 +106,95 @@ function MapwithMarkers() {
     }
   };
   
+  const handleDirections = () => {
+    if (navigator.geolocation && selectedMarker) {
+      navigator.geolocation.getCurrentPosition(
+        (position) => {
+          const currentPosition = {
+            lat: position.coords.latitude,
+            lng: position.coords.longitude,
+          };
+
+          const directionsService = new window.google.maps.DirectionsService();
+
+          const request = {
+            origin: currentPosition,
+            destination: {
+              lat: selectedMarker.lat,
+              lng: selectedMarker.lng,
+            },
+            travelMode: window.google.maps.TravelMode.DRIVING,
+          };
+
+          directionsService.route(request, (result, status) => {
+            if (status === window.google.maps.DirectionsStatus.OK) {
+              setDirections(result);
+            }
+          });
+        },
+        (error) => {
+          console.log(error);
+        }
+      );
+    }
+  };
+
 
   return (
     <div>
-      <LoadScript googleMapsApiKey="AIzaSyDKoUoidG1QOmO57mMj44HSIbCNNroE1kY"
-      libraries={["places"]}>
-        <GoogleMap
-          mapContainerStyle={containerStyle}
-          center={selectedMarker ? { lat: selectedMarker.lat, lng: selectedMarker.lng } : center}
-          zoom={zoom}
-          onClick={onClick}
-          ref={mapRef}
-        >
-          {points.map((point, index) => (
-            <Marker
-              key={point.id}
-              position={{ lat: point.lat, lng: point.lng }}
-              icon={getMarkerIcon(point)}
-              onClick={() => onMarkerClick(point)}
-            />
-          ))}
-          {selectedMarker && (
-            <InfoWindow
-              position={{ lat: selectedMarker.lat, lng: selectedMarker.lng }}
-              onCloseClick={onCloseClick}
+      <div class="row justify-content-center m-3">
+
+      <div>
+        <LoadScript googleMapsApiKey="AIzaSyDKoUoidG1QOmO57mMj44HSIbCNNroE1kY">
+          <GoogleMap
+            mapContainerStyle={containerStyle}
+            center={
+              selectedMarker
+                ? { lat: selectedMarker.lat, lng: selectedMarker.lng }
+                : center
+            }
+            zoom={zoom}
+            onClick={onClick}
+            ref={mapRef}
+          >
+            {points.map((point, index) => (
+              <Marker
+                key={point.id}
+                position={{ lat: point.lat, lng: point.lng }}
+                icon={getMarkerIcon(point)}
+                onClick={() => onMarkerClick(point)}
+              />
+            ))}
+            {selectedMarker && (
+              <InfoWindow
+                position={{ lat: selectedMarker.lat, lng: selectedMarker.lng }}
+                onCloseClick={onCloseClick}
+                options={{
+                  pixelOffset: new window.google.maps.Size(0, -30), // Adjust the vertical position of the InfoWindow
+                }}
+              >
+                <div style={{ width: '100px', height: 'auto' }}>
+                  <p>{selectedMarker.title}</p>
+                  <p>{selectedMarker.description}</p>
+                  <button onClick={handleDirections}>Directions</button>
+                </div>
+              </InfoWindow>
+            )}
+            {directions && (
+            <DirectionsRenderer
               options={{
-                pixelOffset: new window.google.maps.Size(0, -30), // Adjust the vertical position of the InfoWindow
+                directions: directions,
               }}
-            >
-              <div style={{ width: '100px', height: 'auto' }}>
-                <p>{selectedMarker.title}</p>
-                <p>{selectedMarker.description}</p>
-                <button>Directions</button>
-                <button onClick={handleStatus}>Change Status</button>
-              </div>
-            </InfoWindow>
+            />
           )}
-          <TrafficLayer onLoad={onLoad} />
-        </GoogleMap>
-      </LoadScript>
+            <TrafficLayer onLoad={onLoad} />
+          </GoogleMap>
+        </LoadScript>
+      </div>
     </div>
+    </div>
+
   );
 }
 
-export default MapwithMarkers
+export default MapwithMarkers;
