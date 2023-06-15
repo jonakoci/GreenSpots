@@ -6,16 +6,18 @@ import {
   LoadScript,
   Marker,
   InfoWindow,
+  DirectionsRenderer,
   TrafficLayer,
 } from "@react-google-maps/api";
 import leaf from "../logos/leafmarker.png";
 import redleaf from "../logos/redLeaf.png";
+import locationLogo from "../logos/currentLocation.png";
 import axios from "axios";
 
 function MapwithMarkers() {
   const [points, setPoints] = useState([]);
   const [selectedMarker, setSelectedMarker] = useState(null);
-  const [available, setAvailable] = useState();
+  const [directions, setDirections] = useState(null);
   const [zoom, setZoom] = useState(12);
   const mapRef = useRef(null);
 
@@ -105,6 +107,39 @@ function MapwithMarkers() {
     }
   };
   
+  const handleDirections = () => {
+    if (navigator.geolocation && selectedMarker) {
+      navigator.geolocation.getCurrentPosition(
+        (position) => {
+          const currentPosition = {
+            lat: position.coords.latitude,
+            lng: position.coords.longitude,
+          };
+
+          const directionsService = new window.google.maps.DirectionsService();
+
+          const request = {
+            origin: currentPosition,
+            destination: {
+              lat: selectedMarker.lat,
+              lng: selectedMarker.lng,
+            },
+            travelMode: window.google.maps.TravelMode.DRIVING,
+          };
+
+          directionsService.route(request, (result, status) => {
+            if (status === window.google.maps.DirectionsStatus.OK) {
+              setDirections(result);
+            }
+          });
+        },
+        (error) => {
+          console.log(error);
+        }
+      );
+    }
+  };
+
 
   return (
     <div>
@@ -129,9 +164,14 @@ function MapwithMarkers() {
         <LoadScript googleMapsApiKey="AIzaSyDKoUoidG1QOmO57mMj44HSIbCNNroE1kY">
           <GoogleMap
             mapContainerStyle={containerStyle}
-            center={center}
-            zoom={10}
+            center={
+              selectedMarker
+                ? { lat: selectedMarker.lat, lng: selectedMarker.lng }
+                : center
+            }
+            zoom={zoom}
             onClick={onClick}
+            ref={mapRef}
           >
             {points.map((point, index) => (
               <Marker
@@ -152,10 +192,17 @@ function MapwithMarkers() {
                 <div style={{ width: '100px', height: 'auto' }}>
                   <p>{selectedMarker.title}</p>
                   <p>{selectedMarker.description}</p>
-                  <button>Directions</button>
+                  <button onClick={handleDirections}>Directions</button>
                 </div>
               </InfoWindow>
             )}
+            {directions && (
+            <DirectionsRenderer
+              options={{
+                directions: directions,
+              }}
+            />
+          )}
             <TrafficLayer onLoad={onLoad} />
           </GoogleMap>
         </LoadScript>
