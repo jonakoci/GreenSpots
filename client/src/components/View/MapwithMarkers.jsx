@@ -161,6 +161,8 @@ function MapwithMarkers() {
         </LoadScript>
       </div>
     </div>
+    </div>
+
   );
 }
 
