@@ -1,4 +1,6 @@
 import React, { useEffect, useState, useRef } from "react";
+import {Link} from "react-router-dom";
+
 
 import {
   GoogleMap,
@@ -26,6 +28,7 @@ function MapwithMarkers() {
       .get("http://localhost:8000/api/users")
       .then((res) => {
         setPoints(res.data.points);
+        console.log(res.data.points);
       })
       .catch((err) => {
         console.log(err);
@@ -76,35 +79,6 @@ function MapwithMarkers() {
     }
   };
   
-  const handleStatus = () => {
-    if (selectedMarker) {
-      const pointId = selectedMarker.id;
-      const updatedPoints = points.map((point) => {
-        if (point.id === pointId) {
-          return {
-            ...point,
-            available: !selectedMarker.available,
-          };
-        }
-        return point;
-      });
-  
-      axios
-        .patch(`http://localhost:8000/api/users/edit/${pointId}`, {
-          available: !selectedMarker.available,
-        })
-        .then((res) => {
-          setPoints(updatedPoints);
-          setSelectedMarker((prevSelectedMarker) => ({
-            ...selectedMarker,
-            available: !selectedMarker.available,
-          }));
-        })
-        .catch((err) => {
-          console.log(err);
-        });
-    }
-  };
   
   const handleDirections = () => {
     if (navigator.geolocation && selectedMarker) {
@@ -139,13 +113,21 @@ function MapwithMarkers() {
     }
   };
 
+  const deletePoint = (pointId) => {
+    axios.delete('http://localhost:8000/api/users/' + pointId)
+        .then(res => {
+            setPoints(points.filter(point => point._id != pointId)); 
+        })
+        .catch(err => console.log(err))
+}
+
 
   return (
     <div>
       <div class="row justify-content-center m-3">
 
       <div>
-        <LoadScript googleMapsApiKey="AIzaSyDKoUoidG1QOmO57mMj44HSIbCNNroE1kY">
+        <LoadScript googleMapsApiKey="AIzaSyA0KPhwZR5KH-57FNVgalP2KLFpvq1XDAE">
           <GoogleMap
             mapContainerStyle={containerStyle}
             center={
@@ -177,6 +159,11 @@ function MapwithMarkers() {
                   <p>{selectedMarker.title}</p>
                   <p>{selectedMarker.description}</p>
                   <button onClick={handleDirections}>Directions</button>
+                  <div className="d-flex" style={{ marginTop: '10px' }}>
+                  <Link to={"/edit/" + selectedMarker._id }><button style={{ marginRight: '10px' }}>Edit</button></Link>
+                  <button onClick={() => deletePoint(selectedMarker._id)}>Delete</button>
+                  </div>
+                  
                 </div>
               </InfoWindow>
             )}

@@ -25,7 +25,7 @@ function Header () {
                             <Link to="/about" style={{ textDecoration: 'none' }}><p class="nav-link" href="#">About</p></Link>
                         </li>
                         <li class="navbar-brand">
-                            <Link to="/#" style={{ textDecoration: 'none' }}><p class="nav-link" href="#">Add a charge Point</p></Link>
+                            <Link to="/newpoint" style={{ textDecoration: 'none' }}><p class="nav-link" href="#">Add a charge Point</p></Link>
                         </li>
                         
                     </ul>

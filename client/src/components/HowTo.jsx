@@ -32,7 +32,6 @@ function HowTo() {
                                             <li>Email Address</li>
                                             <li>Name</li>
                                             <li>Car Information: the make, model, and license plate number</li>
-                                            <li>Name</li>
                                             <li>Estimated duration of your charging session</li>
                                             <li>Payment Method</li>
                                         </ul>

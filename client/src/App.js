@@ -15,6 +15,8 @@ import AboutUs from "./components/View/aboutUs/AboutUs";
 import Header from "./components/View/Header";
 import Footer from "./components/View/Footer";
 import Data from "./components/View/InfoData";
+import NewPoint from "./components/View/newPoint/NewPoint";
+import Edit from "./components/View/Edit/Edit";
 
 function App() {
   return (
@@ -38,6 +40,26 @@ function App() {
               <>
                 <Header />
                 <AboutUs />
+                <Footer />
+              </>
+            }
+          />
+          <Route
+            path="/newpoint"
+            element={
+              <>
+                <Header />
+                <NewPoint />
+                <Footer />
+              </>
+            }
+          />
+          <Route
+            path="/edit/:id"
+            element={
+              <>
+                <Header />
+                <Edit />
                 <Footer />
               </>
             }
