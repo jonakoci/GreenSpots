@@ -9,6 +9,7 @@ const NewPoint = () => {
   const [lat, setLat] = useState();
   const [lng, setLng] = useState();
   const [available, setAvailable] = useState(true);
+  const [errors,setErrors] = useState([]);
   const navigate= useNavigate();
 
   const onSubmitHandler = (e) => {
@@ -21,10 +22,18 @@ const NewPoint = () => {
         available     
     })
     .then((res) => {
-        console.log(res);
-        navigate("/");
+      console.log(res.data.errors);
+      if (res.data.errors) {
+          setErrors(res.data.errors);
+      }
+      else{
+      console.log(res)
+      navigate("/");
+      }
       })
-    .catch(err=>(err ))
+      .catch(err=>{
+        console.log("erorrTEst:"+ JSON.stringify(err))
+    })
 }
   
   return (
@@ -43,6 +52,11 @@ const NewPoint = () => {
           onChange = {(e)=>setTitle(e.target.value)}
         />
       </div>
+      {errors.title ? (
+                <p className="text-danger">{errors.title.message}</p>
+              ) : (
+                ""
+              )}
       <div class="input-group mb-3">
         <div className="input-group-prepend">
           <span className="input-group-text" id="inputGroup-sizing-default">
@@ -56,7 +70,11 @@ const NewPoint = () => {
           onChange = {(e)=>setDescription(e.target.value)}
         />
       </div>
-
+      {errors.description ? (
+                <p className="text-danger">{errors.description.message}</p>
+              ) : (
+                ""
+              )}
       <p>Position:</p>
       <div className="positionC d-flex justify-content-around">
        <div class="input-group mb-3">
@@ -72,7 +90,11 @@ const NewPoint = () => {
           onChange = {(e)=>setLat(e.target.value)}
         />
       </div>
-
+      {errors.lat ? (
+                <p className="text-danger">{errors.lat.message}</p>
+              ) : (
+                ""
+              )}
       <div class="input-group mb-3">
         <div className="input-group-prepend">
           <span className="input-group-text" id="inputGroup-sizing-default">
@@ -86,6 +108,11 @@ const NewPoint = () => {
           onChange = {(e)=>setLng(e.target.value)}
         />
       </div>
+      {errors.lng ? (
+                <p className="text-danger">{errors.lng.message}</p>
+              ) : (
+                ""
+              )}
       </div>
 
       <div class="form-group">

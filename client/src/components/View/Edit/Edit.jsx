@@ -10,6 +10,7 @@ const Edit = () => {
   const [lat, setLat] = useState();
   const [lng, setLng] = useState();
   const [available, setAvailable] = useState(true);
+  const [errors,setErrors] = useState([]);
   const navigate= useNavigate();
 
   useEffect(()=>{
@@ -29,7 +30,7 @@ const Edit = () => {
 
   const onSubmitHandler = (e) => {
     e.preventDefault();
-    axios.post('http://localhost:8000/api/users/new', {
+    axios.patch('http://localhost:8000/api/users/edit/' + id, {
         title,
         description,    
         lng,
@@ -37,10 +38,14 @@ const Edit = () => {
         available     
     })
     .then((res) => {
-        console.log(res);
+        if(res.data.errors) {
+            console.log(errors);
+            setErrors(res.data.errors)
+        }else{
         navigate("/");
+        }
       })
-    .catch(err=>(err ))
+      .catch(err=>{ setErrors(err.response.data.errors ) })
 }
   
   return (
@@ -59,6 +64,11 @@ const Edit = () => {
           onChange = {(e)=>setTitle(e.target.value)}
         />
       </div>
+      {errors.title ? (
+                <p className="text-danger">{errors.title.message}</p>
+              ) : (
+                ""
+              )}
       <div class="input-group mb-3">
         <div className="input-group-prepend">
           <span className="input-group-text" id="inputGroup-sizing-default">
@@ -72,7 +82,11 @@ const Edit = () => {
           onChange = {(e)=>setDescription(e.target.value)}
         />
       </div>
-
+      {errors.description ? (
+                <p className="text-danger">{errors.description.message}</p>
+              ) : (
+                ""
+              )}
       <p>Position:</p>
       <div className="positionC d-flex justify-content-around">
        <div class="input-group mb-3">
@@ -88,7 +102,11 @@ const Edit = () => {
           onChange = {(e)=>setLat(e.target.value)}
         />
       </div>
-
+      {errors.lat ? (
+                <p className="text-danger">{errors.lat.message}</p>
+              ) : (
+                ""
+              )}
       <div class="input-group mb-3">
         <div className="input-group-prepend">
           <span className="input-group-text" id="inputGroup-sizing-default">
@@ -103,7 +121,11 @@ const Edit = () => {
         />
       </div>
       </div>
-
+      {errors.lng ? (
+                <p className="text-danger">{errors.lng.message}</p>
+              ) : (
+                ""
+              )}
       <div class="form-group">
               <label>Available</label>
               <input type="checkbox" checked={available} onChange = {(e)=>setAvailable(!available)} />
